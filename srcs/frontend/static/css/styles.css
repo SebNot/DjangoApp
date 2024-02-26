@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Recursive:slnt,wght,CRSV,MONO@-15,800,0,1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400&display=swap');
+/* @import url('./assets/Quinquefive-ALoRM.ttf'); */
+
+@font-face {
+    font-family: 'Quinquefive';
+    src: url('../assets/Quinquefive-ALoRM.ttf'), format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+html {
+	font-size: 11px;
+}
+
+body {
+	font-family: 'Quinquefive' !important;
+	/* color: white !important; */
+	color:antiquewhite !important;
+	/* background-color:midnightblue !important; */
+	background: linear-gradient(27deg, rgb(30, 30, 30) 0%, rgb(45, 32, 74) 40%, rgb(144, 10, 10) 100%);
+	background: radial-gradient(circle, rgba(71,53,61,1) 0%, rgb(28, 35, 42) 100%);
+	/* background: radial-gradient(circle, rgb(28, 21, 23) 0%, rgb(18, 22, 27) 100%); */
+
+}
+
+h1 {
+	line-height: 1.8 !important;
+}
+
+.page {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	/* background-color: rgba(255, 255, 255, 0.1); */
+}
+
+#logo {
+	padding: 1rem;
+	font-family: 'Quinquefive';
+	color: antiquewhite;
+	/* font-size: auto; */
+	flex-shrink: 1;
+	font-size: 3rem;
+	/* box-shadow: rgba(0, 0, 0, 0.5) 0px 30px 60px -12px inset, rgba(147, 147, 147, 0.5) 10px 18px 36px -38px inset; */
+	background-color: rgba(10, 10, 10, 0.549);
+	border-radius: 10px;
+}
+
+.navbar {
+	font-family: 'Quinquefive';
+	color: antiquewhite;
+}
+
+#top-navbar {
+	/* height: inherit; */
+	height: 100%;
+}
+
+.top-navbar-items {
+	display: flex;
+	gap: 3rem;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0px;
+	height: 100%;
+	min-width: 50px;
+}
+
+.top-navbar-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	color: white;
+	height: inherit;
+}
+
+/* .nav-link-style {
+	height: inherit;
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
+} */
+
+.nav-img {
+	/* width: max-content; */
+	min-width: 20px;
+	/* width: 40%; */
+	width: 30px;
+	max-width: 50px;
+}
+
+.nav-text {
+	font-size: 1.5rem;
+	display: inline;
+	color:antiquewhite;
+}
+
+#dropdown-item-style {
+	/* width: 100px !important; */
+	overflow: scroll;
+}
+
+.dropdown-style {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: baseline;
+	align-content: baseline;
+	text-align: center;
+	height: 100%;
+}
+
+.dropdown-menu {
+	background-color: antiquewhite !important;
+}
+
+.black-bg {
+	/* display: flex; */
+	/* height: 100%; */
+	flex-grow: 1;
+	background-color: rgba(0,0,0, 0.5);
+}
+
+.game-header {
+	/* background-color: rgba(27, 194, 80, 0.5); */
+	position: absolute;
+	padding: 1rem;
+	display: flex;
+	gap: 2rem;
+	justify-content: space-between;
+	align-items: baseline;
+	border: 1px solid green;
+}
+
+#pongCanvas {
+	background-color: rgba(0, 0, 0, 0.4);
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+	/* border: 1px solid grey; */
+}
+
+#page {
+	background: rgba(0,0,0, 0.5);
+	font-size: 0.5rem;
+	/* background-color: transparent; */
+	/* font-family: 'Recursive', monospace; */
+}
+
+.general-form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 3rem;
+	padding: 5rem;
+}
+
+.form-control {
+	background-color: antiquewhite !important;
+}
+
+.profile-info {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	/* gap: 1rem; */
+	padding: 3rem;
+}
+
+.profile-info-labels {
+	/* padding: 1rem; */
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.profile-info-text {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.profile-settings-img {
+	/* padding: 1rem; */
+	display: flex;
+	flex-direction: column;
+	/* justify-items: baseline; */
+	/* justify-content: baseline; */
+	/* align-items: top; */
+	gap: 2.4rem;
+}
+
+.inner-page-content {
+	padding-top: 8rem;
+	padding-bottom: 8rem;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: rgba(0, 0, 0, 0.2);
+	/* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+	/* box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; */
+
+}
+
+/* .player-stats {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 2rem;
+} */
+
+.unEditableText {
+	padding: 1rem;
+	border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.editableText {
+	border: 1px solid antiquewhite;
+	border-radius: 3px;
+}
+
+@media (max-width: 970px) {
+	.nav-text {
+		font-size: 1.3rem;
+	}
+	.nav-img {
+		width: 20px;
+	}
+}
+
+@media (max-width: 880px) {
+	#logo {
+		font-size: 2rem;
+	}
+}
+
+@media (max-width: 800px) {
+	.nav-text {
+		font-size: 1rem;
+	}
+}
+
+@media (max-width: 710px) {
+	.nav-text {
+		display: none;
+	}
+	.nav-img {
+		width: 40px;
+	}
+}
+
+@media (max-width: 500px) {
+	#logo {
+		padding: 10px;
+		font-size: 1rem;
+	}
+	.profile-info {
+		padding: 2rem;
+	}
+	.nav-img {
+		width: 30px;
+	}
+}
+
+@media (max-width: 350px) {
+	#logo {
+		padding: 10px;
+		font-size: 1rem;
+	}
+}
+
+@media (max-height: 500px) {
+	.nav-text {
+		font-size: 1rem;
+	}
+	#logo {
+		font-size: 1rem;
+		padding: 10px;
+	}
+}
+
+@media screen and (orientation:landscape) {
+    /* CSS applied when the device is in landscape mode */
+}

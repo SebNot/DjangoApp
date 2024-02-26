@@ -1,0 +1,60 @@
+version: '3.8'
+
+networks:
+  pong:
+    driver: bridge
+
+volumes:
+  postgres_data:
+
+services:
+  # DJANGO
+  django:
+    container_name: django
+    build: ./django
+    volumes:
+      - ./django:/pong_backend
+      - ./ssl/pong.42.fr+3-key.pem:/etc/ssl/private/key.pem
+      - ./ssl/pong.42.fr+3.pem:/etc/ssl/certs/cert.pem
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    env_file: 
+      - ./django/.env
+    networks:
+      - pong
+
+  # POSTGRES
+  # To do: 
+  # Don't expose DB port externally
+  postgres:
+    image: postgres
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: pong_db
+      POSTGRES_USER: pong_db_user
+      POSTGRES_PASSWORD: pong_db_password
+    ports:
+      - "5432:5432"
+    networks:
+      - pong
+
+  # FRONTEND
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+      - ./django/pong_backend/media:/var/www/media
+      - ./ssl/pong.42.fr+3-key.pem:/etc/ssl/private/key.pem
+      - ./ssl/pong.42.fr+3.pem:/etc/ssl/certs/cert.pem
+    ports:
+      - "8080:80"  # Maps port 80 in the container to 8080 on the host (exposes Nginx on port 8080)
+      - "443:443"
+    networks:
+      - pong
+    depends_on: 
+      - django

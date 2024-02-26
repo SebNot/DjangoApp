@@ -1,0 +1,9 @@
+Django>=3.2,<=5.0
+djangorestframework
+Pillow
+requests
+
+# PostgreSQL Python Adapter
+psycopg2-binary
+
+django-cors-headers

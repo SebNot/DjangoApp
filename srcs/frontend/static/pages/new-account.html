@@ -1,0 +1,26 @@
+<div class="loginPage">
+	<div class="row justify-content-center text-center">
+		<div class="col-xs-10 col-sm-8 col-md-8 col-lg-6 inner-page-content">
+			<div class="row justify-content-center text-center">
+				<div class="col-xs-10 col-md-8">
+					<h1 class="h-1">Sign Up</h1>
+					<!-- API Endpoints should probably not be exposed in the front-end source code -->
+					<form action="http://localhost:8000/api/register/" method="post" class="general-form" id="registration-form">
+						<div>
+							<label for="nickname" class="form-label p-3">Nickname</label>
+							<input type="text" class="form-control" id="inputNickname" name="username">
+						</div>
+						<div>
+							<label for="password" class="form-label p-3">Password</label>
+							<input type="password" class="form-control" id="inputPassword" name="password">
+						</div>
+						<button type="submit" class="btn btn-outline-success btn-lg p-4">Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<!-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/submit#formmethod -->

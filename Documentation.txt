@@ -1,0 +1,12 @@
+Django:
+ - Installation: `pip install django`
+ - Set up in "./django using": `django-admin startproject pong_backend`
+ - then in "./django/pong_backend": `python manage.py startapp game`
+ - Database configuration (for PostgreSQL) was done in "settings.py"
+
+Django is set up to use a stateless Token-based Authentication system.
+
+Makefile:
+ - up: builds images, starts postgres container, makes migrations and then starts django/frontend containers
+        django needs postgres to be running to make migrations (essentially setting up the database schema)
+
