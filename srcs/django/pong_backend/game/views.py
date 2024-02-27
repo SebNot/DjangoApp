@@ -18,7 +18,7 @@ from django.utils.decorators import method_decorator
 from rest_framework.exceptions import NotAuthenticated, NotFound
 from django.core.files.base import ContentFile
 
-# These classes provide logic to handle requests to the API. 
+# These classes provide logic to handle requests to the API.
 # They work with serializers to validate and process incoming data and prepare it for models.
 # ModelViewSet is used to automatically provide implementations for common actions like list, create, retrieve, update, and destroy.
 
@@ -62,12 +62,13 @@ class LoginView(APIView):
             token, _ = Token.objects.get_or_create(user=user)
             response = Response({
                 "message": "User logged in successfully",
-                'token': token.key
+                'token': token.key,
+                'user_id': user.id
             }, status=status.HTTP_200_OK)
             response.set_cookie(
-                'authToken', 
-                token.key, 
-                httponly=True, 
+                'authToken',
+                token.key,
+                httponly=True,
                 secure=True, # secure=True sends the cookie over HTTPS only
                 samesite='Strict', # Helps prevent CSRF attacks
                 domain='.pong.42.fr',
@@ -190,7 +191,7 @@ def send_friend_request(request, friend_id):
 def manage_friend_request(request, friendship_id, action):
     try:
         friendship = Friendship.objects.get(pk=friendship_id, friend=request.user)
-        
+
         if action == 'accept':
             friendship.status = 'accepted'
             friendship.save()
@@ -212,4 +213,3 @@ def list_friends(request):
     ).distinct()
     serializer = UserSerializer(friends, many=True)
     return Response(serializer.data)
-

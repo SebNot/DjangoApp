@@ -49,6 +49,7 @@ function loginUser(username, password) {
             window.location.href = '/#account';
             updateDropdownBasedOnLoginState();
             window.dispatchEvent(new Event('loginStateChange'));
+            localStorage.setItem('current_user', data.user_id);
         } else {
             console.error('Login failed:', data.error);
             // Display error message to the user
@@ -75,7 +76,7 @@ function registerUser(username, password) {
         },
         body: JSON.stringify({ username, password }),
         credentials: 'include'
-        
+
     })
     .then(response => response.json())
     .then(data => {
@@ -83,6 +84,7 @@ function registerUser(username, password) {
             // update UI
             window.location.href = '/#account';
             updateDropdownBasedOnLoginState();
+            localStorage.setItem('current_user', data.user_id);
         } else {
             console.error('Registration failed:', data.error);
             // Display error message to the user

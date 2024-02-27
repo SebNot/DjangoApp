@@ -34,11 +34,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',
     'django.contrib.staticfiles',
-	
+    'channels',
+
     # MyApps
     'game',
-	'invite',
+	  'invite',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders'
@@ -74,6 +76,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'pong_backend.wsgi.application'
+ASGI_APPLICATION = "pong_backend.asgi.application"
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -134,6 +143,8 @@ CORS_ALLOWED_ORIGINS = [
     "https://www.pong.42.fr",
     "http://www.pong.42.fr",
     "https://pong.42.fr",
+    "wss://pong.42.fr",
+    "ws://pong.42.fr",
 ]
 
 CORS_ALLOW_CREDENTIALS = True

@@ -5,6 +5,7 @@ import { fetchProfileDetail } from './fetchProfileDetail.js';
 import { editProfile, saveProfile } from './editProfileDetail.js';
 import { checkLoginState } from './dropdown.js';
 import { initData, isGameOn } from './pong.js';
+import { invitePlayer } from './invite.js';
 
 function updatePageContent(path, winner) {
 	if (isGameOn())
@@ -33,7 +34,7 @@ function updatePageContent(path, winner) {
 	if (hash.length == 0)
 		hash = "#";
 	let element = document.getElementById("page-content");
-	
+
 	console.log(window.location.pathname);
 
 	let route = routes[hash] || routes[404];

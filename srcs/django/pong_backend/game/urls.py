@@ -1,7 +1,7 @@
 # urls.py
 from django.urls import path
 from .views import UserCreate, UserDelete, LoginView, LogoutView, check_login_state, UserProfileDetail, send_friend_request, manage_friend_request, list_friends, Leaderboard, GameCreate
-
+from invite.views import invite_player
 # This connects URLs to ViewSets.
 
 urlpatterns = [
@@ -20,4 +20,5 @@ urlpatterns = [
     path('leaderboard/', Leaderboard.as_view(), name='leaderboard'),
     # Game Results
     path('game_results/', GameCreate.as_view(), name='game_results'),
+    path('invite-player/', invite_player, name='invite_player'),
 ]

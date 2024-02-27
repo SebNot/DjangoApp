@@ -1,7 +1,9 @@
 import { fetchProfileDetail, updateAliasInGame } from './fetchProfileDetail.js';
 import { getCookie } from './dropdown.js';
 
+
 let gameOn = 0;
+const game_mode = 'bot';
 
 export function isGameOn() {
   return gameOn === 1;
@@ -95,6 +97,7 @@ function addBot(assets, canvas) {
   if (assets.ball.x > canvas.width / 2 && assets.ball.dx > 0) {
     if (assets.ball.y <= assets.rightPaddle.y + assets.paddleHeight / 2)
       assets.rightPaddle.dy = -assets.paddleSpeed;
+
     else if (assets.ball.y >= assets.rightPaddle.y + assets.paddleHeight / 2)
       assets.rightPaddle.dy = assets.paddleSpeed;
   } else assets.rightPaddle.dy = 0;
@@ -106,6 +109,7 @@ function displayScores(assets, ctx, canvas) {
 }
 
 function play(assets, canvas, ctx) {
+
   assets.gameOver = 0;
   gameOn = 1;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -217,8 +221,12 @@ function play(assets, canvas, ctx) {
   addBot(assets, canvas);
 
   // Request the next frame if game continues
-  if (assets.gameOver == 0)
+  if (assets.gameOver == 0){
+    // socket.send(JSON.stringify({
+    //   paddle_y: assets.leftPaddle.y,
+    // }));
     requestAnimationFrame(() => play(assets, canvas, ctx));
+  }
   else if (assets.gameOver == 1) {
     setTimeout(() => {
       assets.gameOver = 0;
@@ -308,7 +316,7 @@ export function loadPongCanvas() {
 	// updatePageContent("#game");
 	if (window.innerHeight < 800) showHeader();
 	// window.location.hash = '#game';
-  
+
 	fetchProfileDetail().then(profile => {
 	  updateAliasInGame(profile.alias);
 	  let data = initData(profile.alias, 'Bot');
@@ -319,12 +327,13 @@ export function loadPongCanvas() {
 
 window.loadPongCanvas = loadPongCanvas;
 
+
 // Display game over screen and send the game result to the server
 function showGameOver(assets, canvas, ctx) {
   gameOn = 0;
   if (window.innerHeight < 800) hideHeader();
   let winner = assets.score1 > assets.score2 ? assets.alias1 : assets.alias2;
-  const event = new CustomEvent("gameOver", { 
+  const event = new CustomEvent("gameOver", {
     detail: {
       winner: winner,
       loser: winner === assets.alias1 ? assets.alias2 : assets.alias1,
@@ -332,7 +341,7 @@ function showGameOver(assets, canvas, ctx) {
       score2: assets.score2,
       alias1: assets.alias1,
       alias2: assets.alias2
-    } 
+    }
   });
   window.dispatchEvent(event);
   displayScores(assets, ctx, canvas);
@@ -374,6 +383,42 @@ function sendGameResult(winner, loser, winnerScore, loserScore) {
   });
 }
 
+
+
+function startWebSocketConnection() {
+  var room_name = "main";
+  var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+  var ws_path = ws_scheme + '://' + window.location.host + "/api/pong/" + room_name + "/";
+  console.log("Connecting to " + ws_path);
+  var socket = new WebSocket(ws_path);
+
+  socket.onopen = function() {
+      console.log("Main WebSocket connection opened. Room: " + room_name);
+  };
+
+  socket.onmessage = function(e) {
+      var data = JSON.parse(e.data);
+      console.log("Message from server: ", data);
+  };
+
+  socket.onclose = function(e) {
+      console.error('WebSocket connection closed.');
+  };
+
+  socket.onerror = function(e) {
+      console.error('WebSocket encountered error: ', e.message, 'Closing socket');
+      socket.close();
+  };
+
+  // You can store the socket variable globally if you need to access it from other functions
+  window.socket = socket;
+  return socket;
+}
+
+const mainSocket = startWebSocketConnection();
+
+export { mainSocket };
+
 export { initData };
 
 // function addPlayButtonEventListeners() {
@@ -385,5 +430,3 @@ export { initData };
 // 		play();
 // 	});
 // }
-
-
